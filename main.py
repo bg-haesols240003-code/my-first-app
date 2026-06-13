@@ -1,46 +1,65 @@
+hobby_data = {
+    "10대": {
+        "name": "🎨 그림 그리기",
+        "desc": "상상력과 창의력을 마음껏 표현할 수 있는 취미예요."
+    },
+    "20대": {
+        "name": "📷 사진 찍기",
+        "desc": "추억을 기록하고 새로운 시각을 키울 수 있어요."
+    },
+    "30대": {
+        "name": "📚 독서",
+        "desc": "지식과 통찰력을 넓히는 최고의 취미예요."
+    },
+    "40대": {
+        "name": "🌱 식물 키우기",
+        "desc": "일상 속 힐링과 여유를 느낄 수 있어요."
+    },
+    "50대": {
+        "name": "🚶 산책",
+        "desc": "건강을 챙기면서 기분 전환도 할 수 있어요."
+    }
+}
+
 if st.button("✨ 취미 추천받기"):
 
-    if age < 10:
-        hobby = hobbies[0]  # 그림 그리기
-        comment = "🧸 다양한 것을 경험하며 상상력을 키워보세요!"
+    if 10 <= age < 20:
+        group = "10대"
+        comment = "🌈 창의력이 반짝이는 시기예요!"
 
-    elif age < 20:
-        hobby = hobbies[0]  # 그림 그리기
-        comment = "🌈 창의력과 상상력이 풍부한 10대에게 딱 맞는 취미예요!"
+    elif 20 <= age < 30:
+        group = "20대"
+        comment = "📸 새로운 경험을 많이 쌓아보세요!"
 
-    elif age < 30:
-        hobby = hobbies[3]  # 사진 찍기
-        comment = "📸 다양한 경험과 추억을 기록하기 좋은 시기예요!"
+    elif 30 <= age < 40:
+        group = "30대"
+        comment = "📚 자기계발에 투자하기 좋은 시기예요!"
 
-    elif age < 40:
-        hobby = hobbies[1]  # 독서
-        comment = "📚 자기계발과 새로운 지식을 쌓기에 좋은 나이예요!"
+    elif 40 <= age < 50:
+        group = "40대"
+        comment = "🌿 여유와 힐링이 중요해지는 시기예요!"
 
-    elif age < 50:
-        hobby = hobbies[4]  # 식물 키우기
-        comment = "🌱 바쁜 일상 속에서 힐링과 여유를 느껴보세요!"
-
-    elif age < 60:
-        hobby = hobbies[5]  # 산책
-        comment = "🚶 건강과 행복을 함께 챙길 수 있는 취미예요!"
+    elif 50 <= age < 60:
+        group = "50대"
+        comment = "💪 건강을 챙기며 즐길 수 있는 취미가 좋아요!"
 
     else:
-        hobby = hobbies[2]  # 음악 감상
-        comment = "🎵 여유롭게 음악을 즐기며 행복한 시간을 보내보세요!"
+        st.warning("😊 이 앱은 현재 10대~50대를 대상으로 추천합니다.")
+        st.stop()
 
     st.balloons()
 
-    st.success(f"🎉 추천 취미는 **{hobby['name']}** 입니다!")
-
-    st.markdown("---")
+    st.success(
+        f"🎉 {group}에게 추천하는 취미는 **{hobby_data[group]['name']}** 입니다!"
+    )
 
     st.markdown(f"""
 ### 🏆 추천 결과
 
-#### {hobby['name']}
+#### {hobby_data[group]['name']}
 
 📖 **취미 설명**
-{hobby['desc']}
+{hobby_data[group]['desc']}
 
 💬 **한마디**
 {comment}
