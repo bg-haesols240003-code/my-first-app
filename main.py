@@ -1,66 +1,82 @@
-hobby_data = {
-    "10대": {
-        "name": "🎨 그림 그리기",
-        "desc": "상상력과 창의력을 마음껏 표현할 수 있는 취미예요."
-    },
-    "20대": {
-        "name": "📷 사진 찍기",
-        "desc": "추억을 기록하고 새로운 시각을 키울 수 있어요."
-    },
-    "30대": {
-        "name": "📚 독서",
-        "desc": "지식과 통찰력을 넓히는 최고의 취미예요."
-    },
-    "40대": {
-        "name": "🌱 식물 키우기",
-        "desc": "일상 속 힐링과 여유를 느낄 수 있어요."
-    },
-    "50대": {
-        "name": "🚶 산책",
-        "desc": "건강을 챙기면서 기분 전환도 할 수 있어요."
-    }
-}
+import streamlit as st
 
+# 페이지 설정
+st.set_page_config(
+    page_title="🌟 나이별 취미 추천기",
+    page_icon="🎨",
+    layout="centered"
+)
+
+# 제목
+st.markdown(
+    """
+    <h1 style='text-align:center;'>🌟 나이별 취미 추천기 🌟</h1>
+    <h4 style='text-align:center;'>나이를 입력하면 딱 맞는 취미를 추천해 드려요!</h4>
+    """,
+    unsafe_allow_html=True
+)
+
+st.write("")
+
+# 나이 입력
+age = st.number_input(
+    "🎂 나이를 입력하세요",
+    min_value=10,
+    max_value=59,
+    step=1
+)
+
+# 추천 버튼
 if st.button("✨ 취미 추천받기"):
 
     if 10 <= age < 20:
-        group = "10대"
-        comment = "🌈 창의력이 반짝이는 시기예요!"
+        hobby = "🎨 그림 그리기"
+        description = "상상력과 창의력을 마음껏 표현할 수 있는 취미예요."
+        comment = "🌈 창의력이 반짝이는 10대에게 딱!"
 
     elif 20 <= age < 30:
-        group = "20대"
-        comment = "📸 새로운 경험을 많이 쌓아보세요!"
+        hobby = "📷 사진 찍기"
+        description = "일상의 특별한 순간을 기록하고 추억을 남길 수 있어요."
+        comment = "📸 새로운 경험을 많이 쌓는 20대에게 추천!"
 
     elif 30 <= age < 40:
-        group = "30대"
-        comment = "📚 자기계발에 투자하기 좋은 시기예요!"
+        hobby = "📚 독서"
+        description = "지식과 통찰력을 넓히고 자기계발에 도움을 줘요."
+        comment = "🧠 성장하는 30대에게 잘 어울려요!"
 
     elif 40 <= age < 50:
-        group = "40대"
-        comment = "🌿 여유와 힐링이 중요해지는 시기예요!"
+        hobby = "🌱 식물 키우기"
+        description = "식물이 자라는 모습을 보며 힐링과 여유를 얻을 수 있어요."
+        comment = "🌿 바쁜 일상 속 작은 쉼표!"
 
-    elif 50 <= age < 60:
-        group = "50대"
-        comment = "💪 건강을 챙기며 즐길 수 있는 취미가 좋아요!"
+    else:  # 50대
+        hobby = "🚶 산책"
+        description = "건강도 챙기고 기분 전환도 할 수 있는 최고의 취미예요."
+        comment = "💪 건강과 행복을 함께 챙겨보세요!"
 
-    else:
-        st.warning("😊 이 앱은 현재 10대~50대를 대상으로 추천합니다.")
-        st.stop()
-
+    # 풍선 효과
     st.balloons()
 
-    st.success(
-        f"🎉 {group}에게 추천하는 취미는 **{hobby_data[group]['name']}** 입니다!"
+    # 결과 출력
+    st.success(f"🎉 추천 취미는 **{hobby}** 입니다!")
+
+    st.markdown("---")
+
+    st.markdown(
+        f"""
+        ## 🏆 추천 결과
+
+        ### {hobby}
+
+        📖 **취미 설명**
+        
+        {description}
+
+        💬 **한마디**
+        
+        {comment}
+        """
     )
 
-    st.markdown(f"""
-### 🏆 추천 결과
-
-#### {hobby_data[group]['name']}
-
-📖 **취미 설명**
-{hobby_data[group]['desc']}
-
-💬 **한마디**
-{comment}
-""")
+st.markdown("---")
+st.caption("✨ 오늘도 즐거운 취미 생활 되세요! ✨")
